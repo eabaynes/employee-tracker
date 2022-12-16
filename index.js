@@ -9,6 +9,9 @@
 
 // html is generated from all responses
 
+// empty array for created employees
+// send that array to a render function to make hmtl
+
 import inquirer from "inquirer"
 
 // general questions for every employee
@@ -64,3 +67,10 @@ const engineerQuestion= [
         message: "What is the engineer's github account?"
     }
 ]
+
+// inquirer prompt
+// finish first employee
+// do you want to add another employee?
+// if yes, repeat questions
+// prompt must be structured so additional question will be added based on which employee category is chosen
+// if no, end questions, send data to render function

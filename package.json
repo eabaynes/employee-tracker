@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/eabaynes/employee-tracker#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "inquirer": "^8.2.4"
   }
 }
