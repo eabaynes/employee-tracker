@@ -74,3 +74,40 @@ const engineerQuestion= [
 // if yes, repeat questions
 // prompt must be structured so additional question will be added based on which employee category is chosen
 // if no, end questions, send data to render function
+
+const engineerCard = {
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">employee role</h5>
+    <h6 class="card-subtitle mb-2 text-muted">employee name</h6>
+    <p class="card-text">employee id</p>
+    <a href="#" class="card-link">email</a>
+    <a href="#" class="card-link">github</a>
+  </div>
+</div>
+}
+
+const managerCard = {
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">employee role</h5>
+    <h6 class="card-subtitle mb-2 text-muted">employee name</h6>
+    <p class="card-text">office</p>
+    <p class="card-text">employee id</p>
+    <a href="#" class="card-link">email</a>
+  </div>
+</div>
+}
+
+const internCard = {
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">employee role</h5>
+    <h6 class="card-subtitle mb-2 text-muted">employee name</h6>
+    <p class="card-text">employee id</p>
+    <p class="card-text">intern school</p>
+    <a href="#" class="card-link">email</a>
+
+  </div>
+</div>
+}
