@@ -1,8 +1,10 @@
+// Base class for all employees. Exported as a module.
 export default class Employee {
     #name;
     #id;
     #email;
 
+    // constuctor method to initialize the class properties
     constructor ( {name, id, email} ) {
         this.#name = name;
         this.#id = id;
