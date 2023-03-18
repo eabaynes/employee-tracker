@@ -1,9 +1,8 @@
 // import inquirer and classes from other files
 import inquirer from "inquirer";
-import Employee from "./Employee";
-import Engineer from "./Engineer";
-import Intern from "./Intern";
-import Manager from "./Manager";
+import Engineer from "./Engineer.js";
+import Intern from "./Intern.js";
+import Manager from "./Manager.js";
 
 // Crew will be an exportable class containing inquirer prompts and an empty array to store employees
 export default class Crew {
@@ -14,25 +13,25 @@ export default class Crew {
                 type: "input",
                 name: "name",
                 message: "What is the manager's name?",
-                validate: (input) => this.#validateName(input),
+                validate: (answer) => this.#validateName(answer),
             },
             {
                 type: "input",
                 name: "id",
                 message: "What is the manager's id?",
-                validate: (input) => this.#validateNumber(input),
+                validate: (answer) => this.#validateNumber(answer),
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is the manager's email?",
-                validate: (input) => this.#validateEmail(input),
+                validate: (answer) => this.#validateEmail(answer),
             },
             {
                 type: "input",
                 name: "officeNumber",
                 message: "What is the manager's office number?",
-                validate: (input) => this.#validateNumber(input),
+                validate: (answer) => this.#validateNumber(answer),
             },
         ],
         menu: [
@@ -48,19 +47,19 @@ export default class Crew {
                 type: "input",
                 name: "name",
                 message: "What is the engineer's name?",
-                validate: (input) => this.#validateName(input),
+                validate: (answer) => this.#validateName(answer),
             },
             {
                 type: "input",
                 name: "id",
                 message: "What is the engineer's id?",
-                validate: (input) => this.#validateNumber(input),
+                validate: (answer) => this.#validateNumber(answer),
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is the engineer's email?",
-                validate: (input) => this.#validateEmail(input),
+                validate: (answer) => this.#validateEmail(answer),
             },
             {
                 type: "input",
@@ -73,19 +72,19 @@ export default class Crew {
                 type: "input",
                 name: "name",
                 message: "What is the intern's name?",
-                validate: (input) => this.#validateName(input),
+                validate: (answer) => this.#validateName(answer),
             },
             {
                 type: "input",
                 name: "id",
                 message: "What is the intern's id?",
-                validate: (input) => this.#validateNumber(input),
+                validate: (answer) => this.#validateNumber(answer),
             },
             {
                 type: "input",
                 name: "email",
                 message: "What is the intern's email?",
-                validate: (input) => this.#validateEmail(input),
+                validate: (answer) => this.#validateEmail(answer),
             },
             {
                 type: "input",
@@ -95,30 +94,25 @@ export default class Crew {
         ],
     }
 
-    // method to validate name input
-    #validateName(input) {
-        if (input === "") {
-            return "Please enter a name.";
-        } else {
-            return true;
+     // method to add employees to the crew
+     async addEmployees() {
+            const choice = await inquirer.prompt(this.#questions.menu);
+            // then add employees based on user input
+            switch (choice.menuChoice) {
+                case "Engineer":
+                    await this.#createEngineer();
+                    await this.addEmployees();
+                    break;
+                case "Intern":
+                    await this.#createIntern();
+                    await this.addEmployees();
+                    break;
+                case "Finish":
+                    break;
+            }
         }
-    }
 
-    // method to validate number input
-    #validateNumber(input) {
-        Boolean(input.match(/^[0-9]+$/))
-            ? true
-            : "Please enter a number.";
-    }
-
-    // method to validate email input
-    #validateEmail(input) {
-        Boolean(input.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-            ? true
-            : "Please enter a valid email.";
-    }
-
-    // method to add a manager to the crew
+     // method to add a manager to the crew
     async #createManager() {
         const manager = await inquirer.prompt(this.#questions.manager);
         this.#members.push(new Manager(manager));
@@ -136,22 +130,24 @@ export default class Crew {
         this.#members.push(new Intern(intern));
     }
 
-    // method to add employees to the crew
-    async addEmployees() {
-        const choice = await inquirer.prompt(this.#questions.menu);
+    // method to validate name input
+    #validateName(name) {
+        return name !== "" || "Please enter a name.";
+      }
 
-        switch (choice.menuChoice) {
-            case "Engineer":
-                await this.#createEngineer();
-                await this.addEmployees();
-                break;
-            case "Intern":
-                await this.#createIntern();
-                await this.addEmployees();
-                break;
-            case "Finish":
-                break;
-        }
+    // method to validate number input
+    #validateNumber(input) {
+        return (
+            isNaN(input) || input === "" ? "Please enter a number." : true
+        )
+    }
+
+    // method to validate email input
+    #validateEmail(email) {
+        return (
+          Boolean(email.match(/\S+@\S+\.\S+/)) ||
+          "Please enter a valid email address."
+        );
     }
 
     // method to return the crew
@@ -161,28 +157,37 @@ export default class Crew {
 
     // method to create html cards for each employee
     generateCards() {
-        return (
-            this.#members
-                // map through the array of employees
-                .map((member) => {
-                    `<div class="card employee-card">
-                        <div class="card-header">
-                        <h2 class="card-title">${member.name}</h2>
-                        <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>${member.getRole()}</h3>
-                        </div>
-                        
-                        <div class="card-body">
-                        <ul class="list-group">
-                        <li class="list-group-item">ID: ${member.id}</li>
-                        <li class="list-group-item">Email: <a href="mailto:${member.email}">${member.email}</a></li>
-                        <li class="list-group-item">${member.generateUniqueListElement()}</li>}
+
+        // create an empty array to store the cards
+        const cards = [];
+
+        // loop through the array of employees
+         this.#members
+            // map through the array of employees
+            .map((member) => {
+                    // create a card for each employee
+                    const card = `<div class="card">
+                    <div class="card-header">
+                        <h2>${member.name}</h2>
+                        <h3>${member.getRole()}</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>ID: ${member.id}</li>
+                            <li>Email: <a href="mailto:${member.email}">${member.email}</a></li>
+                            ${member.generateUniqueListElement()}
                         </ul>
-                        </div>
-                        </div>`
-                })
-                // join the array of cards into a string
-                .join("")
-        );
+                    </div>
+                </div>`
+
+                // push the card to the cards array
+                cards.push(card)
+            })
+            // join the cards array into a string
+            const cardsHTML= cards.join(" ")
+
+            // return the string of cards
+            return cardsHTML;
     }
 
     async init() {
