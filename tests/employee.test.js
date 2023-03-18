@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import Employee from "../app/Employee.js";
+import Employee from "../app/model/Employee.js";
 
 describe("Employee", () => {
     it("should return the employee name", () => {
