@@ -13,7 +13,7 @@ const generateHTML = (cards) => {
         </head>
         <body>
         <header>
-        <h1 class="text-center">My Team</h1>
+        <h1 class="text-center">Here is Your Team!</h1>
         </header>
         <main>
         <div class="container">
