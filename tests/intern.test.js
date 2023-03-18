@@ -7,10 +7,10 @@ describe("Intern", () => {
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com",
-            school: "University of Washington"
-            });
+            school: "University of Washington",
+        });
 
-            expect(intern.getName().toEqual("John Doe"));
+        expect(intern.name).toEqual("John Doe");
     });
 
     it("should return the intern id", () => {
@@ -18,10 +18,10 @@ describe("Intern", () => {
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com",
-            school: "University of Washington"
-            });
+            school: "University of Washington",
+        });
 
-            expect(intern.getId().toEqual(1));
+        expect(intern.id).toEqual(1);
     });
 
     it("should return the intern email", () => {
@@ -29,10 +29,10 @@ describe("Intern", () => {
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com",
-            school: "University of Washington"
-            });
+            school: "University of Washington",
+        });
 
-            expect(intern.getEmail().toEqual("johndoe@gmail.com"));
+        expect(intern.email).toEqual("johndoe@gmail.com");
     });
 
     it("should return the intern role", () => {
@@ -40,10 +40,10 @@ describe("Intern", () => {
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com",
-            school: "University of Washington"
-            });
+            school: "University of Washington",
+        });
 
-            expect(intern.getRole().toEqual("Intern"));
+        expect(intern.getRole()).toEqual("Intern");
     });
 
     it("should return the intern school", () => {
@@ -51,10 +51,10 @@ describe("Intern", () => {
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com",
-            school: "University of Washington"
-            });
+            school: "University of Washington",
+        });
 
-            expect(intern.getSchool().toEqual("University of Washington"));
+        expect(intern.school).toEqual("University of Washington");
     });
 
 });

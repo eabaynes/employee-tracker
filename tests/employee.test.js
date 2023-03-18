@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import Employee from "../app/model/Employee.js";
+import Employee from '../app/models/Employee.js'
 
 describe("Employee", () => {
     it("should return the employee name", () => {
@@ -9,7 +9,7 @@ describe("Employee", () => {
             email: "johndoe@gmail.com"
             });
 
-            expect(employee.getName().toEqual("John Doe"));
+            expect(employee.name).toEqual("John Doe");
     });
 
     it("should return the employee id", () => {
@@ -19,26 +19,26 @@ describe("Employee", () => {
             email: "johndoe@gmail.com"
             });
 
-            expect(employee.getId().toEqual(1));
-    });
+            expect(employee.id).toEqual(1);
+    })
 
     it("should return the employee email", () => {
         const employee = new Employee({
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com"
-            });
+        });
 
-            expect(employee.getEmail().toEqual("johndoe@gmail.com"));
-    });
+        expect(employee.email).toEqual("johndoe@gmail.com");
+    })
 
     it("should return the employee role", () => {
         const employee = new Employee({
             name: "John Doe",
             id: 1,
             email: "johndoe@gmail.com"
-            });
+        });
 
-            expect(employee.getRole().toEqual("Employee"));
-    });
+        expect(employee.getRole()).toEqual("Employee");
+    })
 });

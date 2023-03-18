@@ -8,9 +8,9 @@ describe("Manager", () => {
             id: 1,
             email: "johndoe@gmail.com",
             officeNumber: 1
-            });
+        });
 
-            expect(manager.getName().toEqual("John Doe"));
+        expect(manager.name).toEqual("John Doe");
     });
 
     it("should return the manager id", () => {
@@ -19,9 +19,9 @@ describe("Manager", () => {
             id: 1,
             email: "johndoe@gmail.com",
             officeNumber: 1
-            });
+        });
 
-            expect(manager.getId().toEqual(1));
+        expect(manager.id).toEqual(1);
     });
 
     it("should return the manager email", () => {
@@ -30,9 +30,9 @@ describe("Manager", () => {
             id: 1,
             email: "johndoe@gmail.com",
             officeNumber: 1
-            });
+        });
 
-            expect(manager.getEmail().toEqual("johndoe@gmail.com"));
+        expect(manager.email).toEqual("johndoe@gmail.com");
     });
 
     it("should return the manager role", () => {
@@ -41,9 +41,9 @@ describe("Manager", () => {
             id: 1,
             email: "johndoe@gmail.com",
             officeNumber: 1
-            });
+        });
 
-            expect(manager.getRole().toEqual("Manager"));
+        expect(manager.getRole()).toEqual("Manager");
     });
 
     it("should return the manager office number", () => {
@@ -52,9 +52,8 @@ describe("Manager", () => {
             id: 1,
             email: "johndoe@gmail.com",
             officeNumber: 1
-            });
+        });
 
-            expect(manager.getOfficeNumber().toEqual(1));
+        expect(manager.officeNumber).toEqual(1);
     });
-
 });
