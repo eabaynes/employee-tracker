@@ -2,24 +2,24 @@
 import Employee from "./Employee.js"
 
 export default class Manager extends Employee {
-    #office
+    #officeNumber
 
     // constuctor method to initialize the class properties
-    constructor({ name, id, email, office}) {
+    constructor({ name, id, email, officeNumber}) {
         super({ name, id, email });
-        this.#office = office
+        this.#officeNumber = officeNumber
     }
 
     getRole() {
         return "Manager";
     }
 
-    get office() {
-        return this.#office
+    get officeNumber() {
+        return this.#officeNumber
     }
 
     // method to generate unique list element for the manager
     generateUniqueListElement() {
-        return `<li class="list-group-item">Office: ${this.office}</li>`;
+        return `<li class="list-group-item">Office: ${this.#officeNumber}</li>`;
     };
 }
